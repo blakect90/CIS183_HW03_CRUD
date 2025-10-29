@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CIS183_HW03_CRUD">
         <activity
+            android:name=".Search"
+            android:exported="false" />
+        <activity
+            android:name=".AddMajor"
+            android:exported="false" />
+        <activity
+            android:name=".AddStudent"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

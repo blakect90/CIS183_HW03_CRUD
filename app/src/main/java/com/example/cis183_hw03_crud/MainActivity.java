@@ -1,6 +1,12 @@
 package com.example.cis183_hw03_crud;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +15,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    Button btn_j_addStudent;
+    Button btn_j_addMajor;
+    Button btn_j_search;
+    ListView lv_j_studentList;
+    Intent intent_j_addStudent;
+    Intent intent_j_addMajor;
+    Intent intent_j_search;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +35,52 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        btn_j_addStudent = findViewById(R.id.btn_v_addStudent);
+        btn_j_addMajor = findViewById(R.id.btn_v_addMajor);
+        btn_j_search = findViewById(R.id.btn_v_search);
+
+        lv_j_studentList = findViewById(R.id.lv_v_studentList);
+
+        intent_j_addStudent = new Intent(MainActivity.this, AddStudent.class);
+        intent_j_addMajor = new Intent(MainActivity.this, AddMajor.class);
+        intent_j_search = new Intent(MainActivity.this, Search.class);
+
+        setOnClickListeners();
+
+    }
+
+    public void setOnClickListeners()
+    {
+        btn_j_addStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("TEST: ", "Add Student Button Clicked");
+
+                startActivity(intent_j_addStudent);
+
+            }
+        });
+        btn_j_addMajor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("TEST: ", "Add Major Button Clicked");
+
+                startActivity(intent_j_addMajor);
+
+            }
+        });
+        btn_j_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("TEST: ", "Search Button Clicked");
+                startActivity(intent_j_search);
+
+            }
         });
     }
 }
