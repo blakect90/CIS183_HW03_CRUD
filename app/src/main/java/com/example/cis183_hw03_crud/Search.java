@@ -1,6 +1,10 @@
 package com.example.cis183_hw03_crud;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +13,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Search extends AppCompatActivity {
+
+    Button btn_j_search_search;
+    Button btn_j_search_home;
+    EditText et_j_search_fName;
+    EditText et_j_search_lName;
+    EditText et_j_search_uName;
+    Spinner sp_j_major;
+    Spinner sp_j_gpaRange;
+    ListView lv_j_searchList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +35,15 @@ public class Search extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btn_j_search_search = findViewById(R.id.btn_v_search_search);
+        btn_j_search_home = findViewById(R.id.btn_v_search_home);
+        et_j_search_fName = findViewById(R.id.et_v_search_fName);
+        et_j_search_lName = findViewById(R.id.et_v_search_lName);
+        et_j_search_uName = findViewById(R.id.et_v_search_uName);
+        sp_j_major = findViewById(R.id.sp_v_major);
+        sp_j_gpaRange = findViewById(R.id.sp_v_gpaRange);
+
+
     }
 }

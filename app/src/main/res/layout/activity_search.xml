@@ -16,14 +16,14 @@
         android:text="Search Student Database"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText4"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_search_fName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/et_v_search_fName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -31,13 +31,13 @@
         android:ems="10"
         android:hint="First Name"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText5"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_search_lName"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/et_v_search_lName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -45,68 +45,69 @@
         android:ems="10"
         android:hint="Last Name"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText6"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-        app:layout_constraintStart_toStartOf="@+id/editTextText4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintBottom_toTopOf="@+id/et_v_search_uName"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_search_fName"
+        app:layout_constraintStart_toStartOf="@+id/et_v_search_fName"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_search_fName" />
 
     <EditText
-        android:id="@+id/editTextText6"
+        android:id="@+id/et_v_search_uName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/spinner2"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText5"
-        app:layout_constraintStart_toStartOf="@+id/editTextText5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+        app:layout_constraintBottom_toTopOf="@+id/sp_v_major"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_search_lName"
+        app:layout_constraintStart_toStartOf="@+id/et_v_search_lName"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_search_lName" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/sp_v_major"
         android:layout_width="210dp"
         android:layout_height="35dp"
         android:layout_marginBottom="9dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner3"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText6"
-        app:layout_constraintStart_toStartOf="@+id/editTextText6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+        app:layout_constraintBottom_toTopOf="@+id/sp_v_gpaRange"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_search_uName"
+        app:layout_constraintStart_toStartOf="@+id/et_v_search_uName"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_search_uName" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/sp_v_gpaRange"
         android:layout_width="215dp"
         android:layout_height="37dp"
         android:layout_marginBottom="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/spinner2"
-        app:layout_constraintStart_toStartOf="@+id/spinner2"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_search_search"
+        app:layout_constraintEnd_toEndOf="@+id/sp_v_major"
+        app:layout_constraintStart_toStartOf="@+id/sp_v_major"
+        app:layout_constraintTop_toBottomOf="@+id/sp_v_major" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_v_search_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="1dp"
         android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/listView3"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_search_home"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_v_gpaRange" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_v_search_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="22dp"
         android:text="Home"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_v_search_search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/btn_v_search_search"
+        app:layout_constraintTop_toTopOf="@+id/btn_v_search_search" />
 
     <ListView
+        android:id="@+id/lv_v_searchList"
         android:layout_width="386dp"
         android:layout_height="306dp"
         android:layout_marginStart="1dp"
@@ -115,5 +116,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_search_search" />
 </androidx.constraintlayout.widget.ConstraintLayout>
