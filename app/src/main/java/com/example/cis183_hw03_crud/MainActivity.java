@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btn_j_addStudent;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intent_j_addMajor;
     Intent intent_j_search;
     DatabaseHelper dbHelper;
+    StudentListAdapter studentListAdapter;
 
 
     @Override
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         // Set On Click Listeners
         setOnClickListeners();
 
+        populateListView();
+
         // FOR TESTING ONLY
         checkTableRecordCount();
 
@@ -72,6 +77,19 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TEST STUDENT: ", test.getFirstName() + " " + test.getLastName() + " " + test.getUsername() + " " + test.getEmail() + " " + test.getAge() + " " + test.getGpa() + " " + test.getMajor());
         Log.d("TEST MAJOR: ", test2.getMajorID() + " " + test2.getMajorName() + " " + test2.getMajorPrefix());
     }
+    private void populateListView()
+    {
+//        ArrayList<Student> students = dbHelper.getAllStudentData();
+//
+//        // ARRAY LIST TEST
+//        for(int i = 0; i < students.size(); i++)
+//        {
+//            Log.d("ALL STUDENT DATA: ", students.get(i).getFirstName() + " " + students.get(i).getLastName() + " " + students.get(i).getUsername() + " " + students.get(i).getEmail() + " " + students.get(i).getAge() + " " + students.get(i).getGpa() + " " + students.get(i).getMajor());
+//        }
+        studentListAdapter = new StudentListAdapter(this, dbHelper.getAllStudentData());
+        lv_j_studentList.setAdapter(studentListAdapter);
+    }
+
     // BUTTON LISTENERS
     public void setOnClickListeners()
     {

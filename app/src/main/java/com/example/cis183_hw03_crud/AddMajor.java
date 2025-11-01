@@ -60,20 +60,22 @@ public class AddMajor extends AppCompatActivity {
             public void onClick(View v)
             {
 //                Log.d("TEST: ", "Save Major Button Clicked!!");
+
+                // RESET ERROR MSG
                 tv_j_addMajor_Error.setVisibility(View.INVISIBLE);
 
+                // CHECK WHETHER MAJOR ALREADY EXISTS
                 if(dbHelper.majorExists(et_j_majorName.getText().toString()))
                 {
-                    Log.d("TEST: ", "Major already exists!");
+                    //Log.d("TEST: ", "Major already exists!");
                     // ERROR MESSAGE
                     tv_j_addMajor_Error.setVisibility(View.VISIBLE);
                     tv_j_addMajor_Error.setText("Major already exists!");
                 }
                 else
                 {
-                    // ADD NEW MAJOR HERE
-                    Log.d("TEST: ", "New Major Added!!");
-
+                   // ADD NEW MAJOR HERE
+//                    Log.d("TEST: ", "New Major Added!!");
                     String majorName = et_j_majorName.getText().toString();
                     String majorPrefix = et_j_majorPrefix.getText().toString();
 

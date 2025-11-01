@@ -6,6 +6,8 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME = "school.db";
@@ -165,5 +167,36 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
 
         return count != 0;
+    }
+
+    public ArrayList<Student> getAllStudentData()
+    {
+        String sqlQuery = "SELECT * FROM " + STUDENT_TABLE_NAME + ";";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sqlQuery, null);
+
+        ArrayList<Student> studentList = new ArrayList<>();
+
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Student student = new Student();
+                student.setUsername(cursor.getString(0));
+                student.setFirstName(cursor.getString(1));
+                student.setLastName(cursor.getString(2));
+                student.setEmail(cursor.getString(3));
+                student.setAge(cursor.getInt(4));
+                student.setGpa(cursor.getDouble(5));
+                student.setMajor(cursor.getString(6));
+
+                studentList.add(student);
+
+            }
+            while(cursor.moveToNext());
+        }
+
+        db.close();
+        return studentList;
     }
 }
