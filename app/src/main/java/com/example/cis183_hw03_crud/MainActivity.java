@@ -67,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MAJOR COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getMajorTableName()) + "");
 
         Student test = dbHelper.getAllStudentData("addiet");
-        Log.d("TEST: ", test.getFirstName() + " " + test.getLastName() + " " + test.getUsername() + " " + test.getEmail() + " " + test.getAge() + " " + test.getGpa() + " " + test.getMajor());
+        Major test2 = dbHelper.getAllMajorData("Business");
+
+        Log.d("TEST STUDENT: ", test.getFirstName() + " " + test.getLastName() + " " + test.getUsername() + " " + test.getEmail() + " " + test.getAge() + " " + test.getGpa() + " " + test.getMajor());
+        Log.d("TEST MAJOR: ", test2.getMajorID() + " " + test2.getMajorName() + " " + test2.getMajorPrefix());
     }
     // BUTTON LISTENERS
     public void setOnClickListeners()

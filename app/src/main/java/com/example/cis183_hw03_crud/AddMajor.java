@@ -1,10 +1,13 @@
 package com.example.cis183_hw03_crud;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +19,10 @@ public class AddMajor extends AppCompatActivity {
 
     Button btn_j_saveMajor;
     Button btn_j_addMajor_home;
+    EditText et_j_majorName;
+    EditText et_j_majorPrefix;
     Intent intent_j_home;
+    DatabaseHelper dbHelper;
 
 
     @Override
@@ -32,10 +38,15 @@ public class AddMajor extends AppCompatActivity {
 
         btn_j_saveMajor = findViewById(R.id.btn_v_saveMajor);
         btn_j_addMajor_home = findViewById(R.id.btn_v_addMajor_home);
+        et_j_majorName = findViewById(R.id.et_v_majorName);
+        et_j_majorPrefix = findViewById(R.id.et_v_majorPrefix);
 
         intent_j_home = new Intent(AddMajor.this, MainActivity.class);
 
         setOnClickListeners();
+
+        dbHelper = new DatabaseHelper(this);
+        dbHelper.initAllTables();
 
     }
 
@@ -45,7 +56,40 @@ public class AddMajor extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Log.d("TEST: ", "Save Major Button Clicked!!");
+//                Log.d("TEST: ", "Save Major Button Clicked!!");
+
+                if(dbHelper.majorExists(et_j_majorName.getText().toString()))
+                {
+                    Log.d("TEST: ", "Major already exists!!");
+//                String majorName = et_j_majorName.getText().toString();
+//
+//                Major addMajor = db.getAllMajorData(majorName);
+//
+//                if(addMajor == null)
+//                {
+//                    // ADD NEW MAJOR HERE
+//                    Log.d("TEST: ", "New Major Added!!");
+//
+//                }
+//                else
+//                {
+//                    // MAJOR ALREADY EXISTS ERROR
+//                    Log.d("TEST: ", "Major Already Exists!!");
+//
+                }
+                else
+                {
+                    // ADD NEW MAJOR HERE
+                    Log.d("TEST: ", "New Major Added!!");
+
+                    String majorName = et_j_majorName.getText().toString();
+                    String majorPrefix = et_j_majorPrefix.getText().toString();
+
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    db.execSQL("INSERT INTO " + dbHelper.getMajorTableName() + " (majorName, majorPrefix) VALUES ('" + majorName + "', '" + majorPrefix + "');");
+
+
+                }
             }
         });
         btn_j_addMajor_home.setOnClickListener(new View.OnClickListener() {
@@ -56,4 +100,5 @@ public class AddMajor extends AppCompatActivity {
             }
         });
     }
+
 }

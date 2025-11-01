@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "school.db";
     private static final String STUDENT_TABLE_NAME = "students";
     private static final String MAJOR_TABLE_NAME = "majors";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public DatabaseHelper(Context c)
     {
@@ -118,11 +118,48 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
 
     }
+    public Major getAllMajorData(String majorName)
+    {
+        if(majorExists(majorName)) {
+            Major major = new Major();
+            String selectQuery = "SELECT * FROM " + MAJOR_TABLE_NAME + " WHERE majorName = '" + majorName + "';";
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            cursor.moveToFirst();
+
+            major.setMajorID(cursor.getInt(0));
+            major.setMajorName(cursor.getString(1));
+            major.setMajorPrefix(cursor.getString(2));
+
+            cursor.close();
+            db.close();
+
+            return major;
+        }
+        else
+        {
+            return null;
+
+        }
+    }
 
     public boolean userNameExists(String userName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String checkUserName = "SELECT count(userName) FROM " + STUDENT_TABLE_NAME + " WHERE userName = '" + userName + "';";
         Cursor cursor = db.rawQuery(checkUserName, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        db.close();
+
+        return count != 0;
+    }
+
+    public boolean majorExists(String majorName)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String checkMajorName = "SELECT count(majorName) FROM " + MAJOR_TABLE_NAME + " WHERE majorName = '" + majorName + "';";
+        Cursor cursor = db.rawQuery(checkMajorName, null);
         cursor.moveToFirst();
         int count = cursor.getInt(0);
         db.close();
