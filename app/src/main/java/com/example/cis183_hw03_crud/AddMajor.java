@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class AddMajor extends AppCompatActivity {
     Button btn_j_addMajor_home;
     EditText et_j_majorName;
     EditText et_j_majorPrefix;
+    TextView tv_j_addMajor_Error;
     Intent intent_j_home;
     DatabaseHelper dbHelper;
 
@@ -40,6 +42,7 @@ public class AddMajor extends AppCompatActivity {
         btn_j_addMajor_home = findViewById(R.id.btn_v_addMajor_home);
         et_j_majorName = findViewById(R.id.et_v_majorName);
         et_j_majorPrefix = findViewById(R.id.et_v_majorPrefix);
+        tv_j_addMajor_Error = findViewById(R.id.tv_v_addMajor_Error);
 
         intent_j_home = new Intent(AddMajor.this, MainActivity.class);
 
@@ -57,25 +60,14 @@ public class AddMajor extends AppCompatActivity {
             public void onClick(View v)
             {
 //                Log.d("TEST: ", "Save Major Button Clicked!!");
+                tv_j_addMajor_Error.setVisibility(View.INVISIBLE);
 
                 if(dbHelper.majorExists(et_j_majorName.getText().toString()))
                 {
-                    Log.d("TEST: ", "Major already exists!!");
-//                String majorName = et_j_majorName.getText().toString();
-//
-//                Major addMajor = db.getAllMajorData(majorName);
-//
-//                if(addMajor == null)
-//                {
-//                    // ADD NEW MAJOR HERE
-//                    Log.d("TEST: ", "New Major Added!!");
-//
-//                }
-//                else
-//                {
-//                    // MAJOR ALREADY EXISTS ERROR
-//                    Log.d("TEST: ", "Major Already Exists!!");
-//
+                    Log.d("TEST: ", "Major already exists!");
+                    // ERROR MESSAGE
+                    tv_j_addMajor_Error.setVisibility(View.VISIBLE);
+                    tv_j_addMajor_Error.setText("Major already exists!");
                 }
                 else
                 {
@@ -87,8 +79,6 @@ public class AddMajor extends AppCompatActivity {
 
                     SQLiteDatabase db = dbHelper.getWritableDatabase();
                     db.execSQL("INSERT INTO " + dbHelper.getMajorTableName() + " (majorName, majorPrefix) VALUES ('" + majorName + "', '" + majorPrefix + "');");
-
-
                 }
             }
         });
