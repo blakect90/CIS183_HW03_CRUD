@@ -26,8 +26,8 @@ public class Search extends AppCompatActivity {
     Spinner sp_j_gpaRange;
     ListView lv_j_searchList;
     Intent intent_j_home;
-
-
+    DatabaseHelper db;
+    SearchAdapter searchAdapter;
 
 
     @Override
@@ -48,8 +48,13 @@ public class Search extends AppCompatActivity {
         et_j_search_uName = findViewById(R.id.et_v_search_uName);
         sp_j_major = findViewById(R.id.sp_v_major);
         sp_j_gpaRange = findViewById(R.id.sp_v_gpaRange);
+        lv_j_searchList = findViewById(R.id.lv_v_searchList);
+
 
         intent_j_home = new Intent(Search.this, MainActivity.class);
+
+        db = new DatabaseHelper(this);
+        db.initAllTables();
 
         setOnClickListeners();
     }
@@ -60,6 +65,7 @@ public class Search extends AppCompatActivity {
             public void onClick(View v)
             {
                 //Log.d("TEST: ", "Search Button Clicked!!");
+                populateListView();
             }
         });
         btn_j_search_home.setOnClickListener(new View.OnClickListener() {
@@ -71,13 +77,18 @@ public class Search extends AppCompatActivity {
         });
     }
 
-    private void searchDatabase()
+    private void populateListView()
     {
-        String fName = et_j_search_fName.getText().toString();
-        String lName = et_j_search_lName.getText().toString();
-        String uName = et_j_search_uName.getText().toString();
+//        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenFirstName(et_j_search_fName.getText().toString()));
+//        lv_j_searchList.setAdapter(searchAdapter);
+//
+//        Log.d("FOUND: ", db.getAllStudentsGivenFirstName(et_j_search_fName.getText().toString()).size() + "");
 
+//        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenLastName(et_j_search_lName.getText().toString()));
+//        lv_j_searchList.setAdapter(searchAdapter);
+
+        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenUsername(et_j_search_uName.getText().toString()));
+        lv_j_searchList.setAdapter(searchAdapter);
     }
-
 
 }
