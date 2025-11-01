@@ -1,6 +1,7 @@
 package com.example.cis183_hw03_crud;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -87,5 +88,45 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return numRows;
     }
 
+    public Student getAllStudentData(String userName)
+    {
+        if(userNameExists(userName))
+        {
+            Student student = new Student();
+            String selectQuery = "SELECT * FROM " + STUDENT_TABLE_NAME + " WHERE username = '" + userName + "';";
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
 
+            cursor.moveToFirst();
+
+            student.setUsername(cursor.getString(0));
+            student.setFirstName(cursor.getString(1));
+            student.setLastName(cursor.getString(2));
+            student.setEmail(cursor.getString(3));
+            student.setAge(cursor.getInt(4));
+            student.setGpa(cursor.getDouble(5));
+            student.setMajor(cursor.getString(6));
+
+            cursor.close();
+            db.close();
+
+            return student;
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+
+    public boolean userNameExists(String userName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String checkUserName = "SELECT count(userName) FROM " + STUDENT_TABLE_NAME + " WHERE userName = '" + userName + "';";
+        Cursor cursor = db.rawQuery(checkUserName, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        db.close();
+
+        return count != 0;
+    }
 }

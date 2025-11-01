@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         intent_j_addMajor = new Intent(MainActivity.this, AddMajor.class);
         intent_j_search = new Intent(MainActivity.this, Search.class);
 
-        // Initialize Database
+        // Initialize Database with dummy data
         dbHelper = new DatabaseHelper(this);
         dbHelper.initAllTables();
 
@@ -58,12 +58,16 @@ public class MainActivity extends AppCompatActivity {
         // FOR TESTING ONLY
         checkTableRecordCount();
 
+
     }
     // FOR TESTING
     private void checkTableRecordCount()
     {
         Log.d("STUDENT COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getStudentTableName()) + "");
         Log.d("MAJOR COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getMajorTableName()) + "");
+
+        Student test = dbHelper.getAllStudentData("addiet");
+        Log.d("TEST: ", test.getFirstName() + " " + test.getLastName() + " " + test.getUsername() + " " + test.getEmail() + " " + test.getAge() + " " + test.getGpa() + " " + test.getMajor());
     }
     // BUTTON LISTENERS
     public void setOnClickListeners()
