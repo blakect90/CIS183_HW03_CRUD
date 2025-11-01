@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "school.db";
     private static final String STUDENT_TABLE_NAME = "students";
     private static final String MAJOR_TABLE_NAME = "majors";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public DatabaseHelper(Context c)
     {
@@ -61,6 +61,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
             db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('blaket', 'Blake', 'Taylor', 'blaket@school.edu', 36, 4.0, 'Computer Science');");
             db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('ryanl', 'Ryan', 'Lambert', 'ryanl@school.edu', 31, 4.0, 'Business');");
             db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('addiet', 'Addie', 'Taylor', 'addiet@school.edu', 6, 3.5, 'Law');");
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('janed', 'Jane', 'Doe', 'janed@school.edu', 21, 2.0, 'English');");
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('johnd', 'John', 'Doe', 'johnd@school.edu', 21, 3.0, 'History');");
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('spencera', 'Spencer', 'Adams', 'spencera@school.edu', 25, 3.8, 'Computer Science');");
+
 
             db.close();
         }
@@ -196,6 +200,26 @@ public class DatabaseHelper extends SQLiteOpenHelper
             while(cursor.moveToNext());
         }
 
+        db.close();
+        return studentList;
+    }
+
+    public ArrayList<Student> getAllStudentsGivenFirstName(String f)
+    {
+        String fName = f;
+        String sqlQuery = "SELECT * FROM " + STUDENT_TABLE_NAME + " WHERE fname = '" + fName + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sqlQuery, null);
+
+        ArrayList<Student> studentList = new ArrayList<>();
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Student student = new Student();
+            }
+            while(cursor.moveToNext());
+        }
         db.close();
         return studentList;
     }

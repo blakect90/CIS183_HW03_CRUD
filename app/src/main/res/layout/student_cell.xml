@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="21dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,17 +19,17 @@
         android:id="@+id/tv_v_studentCell_lname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="143dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/tv_v_studentCell_fname"
-        app:layout_constraintStart_toEndOf="@+id/tv_v_studentCell_fname"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_v_studentCell_fname" />
 
     <TextView
         android:id="@+id/tv_v_studentCell_uName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="79dp"
+        android:layout_marginEnd="53dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/tv_v_studentCell_lname"
         app:layout_constraintEnd_toEndOf="parent"

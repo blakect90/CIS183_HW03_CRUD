@@ -1,6 +1,9 @@
 package com.example.cis183_hw03_crud;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -22,6 +25,8 @@ public class Search extends AppCompatActivity {
     Spinner sp_j_major;
     Spinner sp_j_gpaRange;
     ListView lv_j_searchList;
+    Intent intent_j_home;
+
 
 
 
@@ -44,6 +49,35 @@ public class Search extends AppCompatActivity {
         sp_j_major = findViewById(R.id.sp_v_major);
         sp_j_gpaRange = findViewById(R.id.sp_v_gpaRange);
 
+        intent_j_home = new Intent(Search.this, MainActivity.class);
+
+        setOnClickListeners();
+    }
+
+    private void setOnClickListeners() {
+        btn_j_search_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                //Log.d("TEST: ", "Search Button Clicked!!");
+            }
+        });
+        btn_j_search_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Log.d("TEST: ", "Home Button Clicked!!");
+                startActivity(intent_j_home);
+            }
+        });
+    }
+
+    private void searchDatabase()
+    {
+        String fName = et_j_search_fName.getText().toString();
+        String lName = et_j_search_lName.getText().toString();
+        String uName = et_j_search_uName.getText().toString();
 
     }
+
+
 }
