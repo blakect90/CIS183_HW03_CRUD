@@ -4,19 +4,21 @@ public class Major
 {
     private String majorName;
     private String majorPrefix;
-    private Integer majorID;  //autoincrement ID??
+    private Integer majorID;  //autoincrement ID?? / Primary Key
 
+    // DEFAULT CONSTRUCTOR
     public Major()
     {
 
     }
+    // OVERLOADED CONSTRUCTOR
     public Major(String n, String p, Integer id)
     {
         majorName = n;
         majorPrefix = p;
         majorID = id;
     }
-
+    // GETTERS AND SETTERS
     public String getMajorName() {
         return majorName;
     }

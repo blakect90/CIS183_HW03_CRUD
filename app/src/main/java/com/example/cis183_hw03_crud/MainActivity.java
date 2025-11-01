@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Intent intent_j_addStudent;
     Intent intent_j_addMajor;
     Intent intent_j_search;
+    DatabaseHelper dbHelper;
+
 
 
 
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // GUI
         btn_j_addStudent = findViewById(R.id.btn_v_addStudent);
         btn_j_addMajor = findViewById(R.id.btn_v_addMajor);
         btn_j_search = findViewById(R.id.btn_v_search);
@@ -47,10 +50,23 @@ public class MainActivity extends AppCompatActivity {
         intent_j_addMajor = new Intent(MainActivity.this, AddMajor.class);
         intent_j_search = new Intent(MainActivity.this, Search.class);
 
+        // Initialize Database
+        dbHelper = new DatabaseHelper(this);
+        dbHelper.initAllTables();
+
+        // Set On Click Listeners
         setOnClickListeners();
 
-    }
+        // FOR TESTING ONLY
+        checkTableRecordCount();
 
+    }
+    // FOR TESTING
+    private void checkTableRecordCount()
+    {
+        Log.d("STUDENT COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getStudentTableName()) + "");
+    }
+    // BUTTON LISTENERS
     public void setOnClickListeners()
     {
         btn_j_addStudent.setOnClickListener(new View.OnClickListener() {

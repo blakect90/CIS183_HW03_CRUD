@@ -1,6 +1,7 @@
 package com.example.cis183_hw03_crud;
 
 import android.content.Context;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -19,15 +20,48 @@ public class DatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        db.execSQL("CREATE TABLE " + STUDENT_TABLE_NAME + " (username VARCHAR(20) PRIMARY KEY, fname VARCHAR(20), lname VARCHAR(20), email VARCHAR(30), age INT, gpa DOUBLE, major VARCHAR(20));");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
+        db.execSQL("DROP TABLE IF EXISTS " + STUDENT_TABLE_NAME + ";");
 
     }
 
+    public String getStudentTableName()
+    {
+        return STUDENT_TABLE_NAME;
+    }
+
+    public void initAllTables()
+    {
+        initStudentTable();
+    }
+
+    private void initStudentTable()
+    {
+        if(countRecordsFromTable(STUDENT_TABLE_NAME) == 0)
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('blaket', 'Blake', 'Taylor', 'blaket@school.edu', 36, 4.0, 'Computer Science');");
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('ryanl', 'Ryan', 'Lambert', 'ryanl@school.edu', 31, 4.0, 'Business');");
+            db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('addiet', 'Addie', 'Taylor', 'addiet@school.edu', 6, 3.5, 'Law');");
+
+            db.close();
+        }
+    }
+
+    public int countRecordsFromTable(String tableName)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int numRows = (int) DatabaseUtils.queryNumEntries(db, tableName);
+        db.close();
+        return numRows;
+    }
 
 
 }
