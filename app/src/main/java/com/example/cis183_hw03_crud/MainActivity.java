@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkTableRecordCount()
     {
         Log.d("STUDENT COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getStudentTableName()) + "");
+        Log.d("MAJOR COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getMajorTableName()) + "");
     }
     // BUTTON LISTENERS
     public void setOnClickListeners()
