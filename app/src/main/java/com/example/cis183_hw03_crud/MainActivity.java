@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     Intent intent_j_addStudent;
     Intent intent_j_addMajor;
     Intent intent_j_search;
+    Intent intent_j_viewUpdateStudent;
+
     DatabaseHelper dbHelper;
     StudentListAdapter studentListAdapter;
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         intent_j_addStudent = new Intent(MainActivity.this, AddStudent.class);
         intent_j_addMajor = new Intent(MainActivity.this, AddMajor.class);
         intent_j_search = new Intent(MainActivity.this, Search.class);
+        intent_j_viewUpdateStudent = new Intent(MainActivity.this, ViewUpdateStudent.class);
 
         // Initialize Database with dummy data
         dbHelper = new DatabaseHelper(this);
@@ -129,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
 
                 String username = ((TextView) view.findViewById(R.id.tv_v_studentCell_uName)).getText().toString();
                 Log.d("USERNAME SELECTED: ", username);
+
+                Intent intent = new Intent(MainActivity.this, ViewUpdateStudent.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
 
             }
         });
