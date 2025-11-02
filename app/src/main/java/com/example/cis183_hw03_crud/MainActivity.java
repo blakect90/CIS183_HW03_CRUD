@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -119,6 +120,15 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("TEST: ", "Search Button Clicked");
                 startActivity(intent_j_search);
+
+            }
+        });
+        lv_j_studentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String username = ((TextView) view.findViewById(R.id.tv_v_studentCell_uName)).getText().toString();
+                Log.d("USERNAME SELECTED: ", username);
 
             }
         });

@@ -94,7 +94,7 @@ public class AddStudent extends AppCompatActivity {
 
                     // ERROR MESSAGE
                     tv_j_addStudent_error.setVisibility(View.VISIBLE);
-                    tv_j_addStudent_error.setText("Empty Fields!");
+                    tv_j_addStudent_error.setText("Must complete all fields!");
                 }
                 else
                 {
