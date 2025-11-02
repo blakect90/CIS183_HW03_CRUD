@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "school.db";
     private static final String STUDENT_TABLE_NAME = "students";
     private static final String MAJOR_TABLE_NAME = "majors";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     public DatabaseHelper(Context c)
     {
@@ -314,6 +314,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('" + s.getUsername() + "', '" + s.getFirstName() + "', '" + s.getLastName() + "', '" + s.getEmail() + "', '" + s.getAge() + "', '" + s.getGpa() + "', '" + s.getMajor() + "');");
+        db.close();
     }
 
     public void updateStudent(Student s)
