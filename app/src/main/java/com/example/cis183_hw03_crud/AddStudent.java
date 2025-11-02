@@ -77,8 +77,6 @@ public class AddStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("TEST: ", "Save Student Button Clicked!!");
-
                 if(dbHelper.userNameExists(et_j_username.getText().toString()))
                 {
                     // ERROR MESSAGE - USERNAME ALREADY EXISTS
@@ -86,7 +84,17 @@ public class AddStudent extends AppCompatActivity {
                     // ERROR MESSAGE
                     tv_j_addStudent_error.setVisibility(View.VISIBLE);
                     tv_j_addStudent_error.setText("Username already exists!");
+                    et_j_username.setTextColor(getResources().getColor(R.color.red));
 
+                }
+                else if(et_j_fName.getText().toString().equals("") || et_j_lName.getText().toString().equals("") || et_j_email.getText().toString().equals("") || et_j_gpa.getText().toString().equals("") || et_j_age.getText().toString().equals(""))
+                {
+                    // ERROR MESSAGE - EMPTY FIELDS
+                    Log.d("TEST: ", "Empty Fields!");
+
+                    // ERROR MESSAGE
+                    tv_j_addStudent_error.setVisibility(View.VISIBLE);
+                    tv_j_addStudent_error.setText("Empty Fields!");
                 }
                 else
                 {
@@ -100,8 +108,19 @@ public class AddStudent extends AppCompatActivity {
                     double gpa = Double.parseDouble(et_j_gpa.getText().toString());
 
                     Student student = new Student(fname, lname, uname, email, age, gpa, major);
-
                     dbHelper.addStudent(student);
+
+                    // CLEAR FIELDS
+                    et_j_username.setText("");
+                    et_j_fName.setText("");
+                    et_j_lName.setText("");
+                    et_j_email.setText("");
+                    et_j_gpa.setText("");
+                    et_j_age.setText("");
+                    sp_j_major.setSelection(0);
+
+                    // RESET ERROR MSG
+                    tv_j_addStudent_error.setVisibility(View.INVISIBLE);
                 }
             }
         });
