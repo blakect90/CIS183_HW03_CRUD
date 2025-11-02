@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "school.db";
     private static final String STUDENT_TABLE_NAME = "students";
     private static final String MAJOR_TABLE_NAME = "majors";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     public DatabaseHelper(Context c)
     {
@@ -321,6 +321,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE " + STUDENT_TABLE_NAME + " SET fname = '" + s.getFirstName() + "', lname = '" + s.getLastName() + "', email = '" + s.getEmail() + "', age = '" + s.getAge() + "', gpa = '" + s.getGpa() + "', major = '" + s.getMajor() + "' WHERE username = '" + s.getUsername() + "';");
+        db.close();
+    }
+
+    public void deleteStudent(String userName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + STUDENT_TABLE_NAME + " WHERE username = '" + userName + "';");
         db.close();
     }
 

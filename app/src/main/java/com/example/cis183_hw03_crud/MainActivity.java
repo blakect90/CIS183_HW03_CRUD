@@ -139,5 +139,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        lv_j_studentList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String username = ((TextView) view.findViewById(R.id.tv_v_studentCell_uName)).getText().toString();
+                dbHelper.deleteStudent(username);
+                populateListView();
+
+                return true;
+            }
+        });
     }
 }
