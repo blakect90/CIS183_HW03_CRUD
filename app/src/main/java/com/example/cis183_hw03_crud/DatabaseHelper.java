@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -150,6 +151,25 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
+    public List<String> getAllMajorNames()
+    {
+        String sqlQuery = "SELECT majorName FROM " + MAJOR_TABLE_NAME + ";";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sqlQuery, null);
+
+        ArrayList<String> majorList = new ArrayList<>();
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                majorList.add(cursor.getString(0));
+            }
+            while(cursor.moveToNext());
+        }
+        db.close();
+        return majorList;
+    }
+
     public boolean userNameExists(String userName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String checkUserName = "SELECT count(userName) FROM " + STUDENT_TABLE_NAME + " WHERE userName = '" + userName + "';";
@@ -288,6 +308,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         db.close();
         return studentList;
+    }
+
+    public void addStudent(Student s)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("INSERT INTO " + STUDENT_TABLE_NAME + " VALUES ('" + s.getUsername() + "', '" + s.getFirstName() + "', '" + s.getLastName() + "', '" + s.getEmail() + "', '" + s.getAge() + "', '" + s.getGpa() + "', '" + s.getMajor() + "');");
+    }
+
+    public void updateStudent(Student s)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
     }
 
 }
