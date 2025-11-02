@@ -14,92 +14,92 @@
         android:text="Student Details"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_details_fName"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_details_fName"
+        app:layout_constraintStart_toStartOf="@+id/et_v_details_fName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/et_v_details_fName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="First Name"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText2"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText2"
-        app:layout_constraintStart_toStartOf="@+id/editTextText2"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_details_lName"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_details_lName"
+        app:layout_constraintStart_toStartOf="@+id/et_v_details_lName"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/et_v_details_lName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumber"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_details_age"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_details_age"
+        app:layout_constraintStart_toStartOf="@+id/et_v_details_age"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_details_fName"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/et_v_details_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Age"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText3"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText3"
-        app:layout_constraintStart_toStartOf="@+id/editTextText3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_details_uName"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_details_uName"
+        app:layout_constraintStart_toStartOf="@+id/et_v_details_uName"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_details_lName"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/et_v_details_uName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText4"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-        app:layout_constraintStart_toStartOf="@+id/editTextText4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_details_email"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_details_email"
+        app:layout_constraintStart_toStartOf="@+id/et_v_details_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_details_age"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/et_v_details_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_details_gpa"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_details_gpa"
+        app:layout_constraintStart_toStartOf="@+id/et_v_details_gpa"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_details_uName"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/et_v_details_gpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="GPA"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4"
+        app:layout_constraintEnd_toEndOf="@+id/sp_v_details_major"
+        app:layout_constraintStart_toStartOf="@+id/sp_v_details_major"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_details_email"
         app:layout_constraintVertical_bias="0.5" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/sp_v_details_major"
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:layout_marginStart="4dp"
@@ -118,7 +118,7 @@
         android:layout_marginBottom="73dp"
         android:text="Major:"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_details_home"
-        app:layout_constraintStart_toStartOf="@+id/spinner" />
+        app:layout_constraintStart_toStartOf="@+id/sp_v_details_major" />
 
     <Button
         android:id="@+id/btn_v_details_home"

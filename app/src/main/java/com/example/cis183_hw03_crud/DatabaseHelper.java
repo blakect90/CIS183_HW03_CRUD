@@ -320,6 +320,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public void updateStudent(Student s)
     {
         SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " + STUDENT_TABLE_NAME + " SET fname = '" + s.getFirstName() + "', lname = '" + s.getLastName() + "', email = '" + s.getEmail() + "', age = '" + s.getAge() + "', gpa = '" + s.getGpa() + "', major = '" + s.getMajor() + "' WHERE username = '" + s.getUsername() + "';");
+        db.close();
     }
 
 }
