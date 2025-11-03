@@ -82,6 +82,9 @@ public class AddMajor extends AppCompatActivity {
                     SQLiteDatabase db = dbHelper.getWritableDatabase();
                     db.execSQL("INSERT INTO " + dbHelper.getMajorTableName() + " (majorName, majorPrefix) VALUES ('" + majorName + "', '" + majorPrefix + "');");
                     db.close();
+
+                    et_j_majorName.setText("");
+                    et_j_majorPrefix.setText("");
                 }
             }
         });
