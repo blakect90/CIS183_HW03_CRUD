@@ -331,4 +331,84 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
     }
 
+    public ArrayList<Student> getAllStudentsGivenCriteria(String f, String l, String u, String m, double gMin, double gMax)
+    {
+        ArrayList<Student> listResults = new ArrayList<>();
+        String selectStatement = "SELECT * FROM " + STUDENT_TABLE_NAME + " WHERE ";
+
+        if(f.isEmpty())
+        {
+            selectStatement += "fname is not null and ";
+        }
+        else
+        {
+            selectStatement += "fname = '" + f + "' and ";
+
+        }
+        if(l.isEmpty())
+        {
+            selectStatement += "lname is not null and ";
+        }
+        else
+        {
+            selectStatement += "lname = '" + l + "' and ";
+        }
+        if(u.isEmpty())
+        {
+            selectStatement += "username is not null and ";
+        }
+        else
+        {
+            selectStatement += "username = '" + u + "' and ";
+        }
+        if(m.isEmpty())
+        {
+            selectStatement += "major is not null and ";
+        }
+        else
+        {
+            selectStatement += "major = '" + m + "' and ";
+        }
+        if(gMin == 0)
+        {
+            selectStatement += "gpa is not null and ";
+        }
+        else
+        {
+            selectStatement += "gpa >= " + gMin + " and ";
+        }
+        if(gMax == 0)
+        {
+            selectStatement += "gpa is not null and ";
+        }
+        else
+        {
+            selectStatement += "gpa <= " + gMax + ";";
+        }
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Student student = new Student();
+                student.setUsername(cursor.getString(0));
+                student.setFirstName(cursor.getString(1));
+                student.setLastName(cursor.getString(2));
+                student.setEmail(cursor.getString(3));
+                student.setAge(cursor.getInt(4));
+                student.setGpa(cursor.getDouble(5));
+                student.setMajor(cursor.getString(6));
+
+                listResults.add(student);
+            }
+            while(cursor.moveToNext());
+            db.close();
+        }
+        return listResults;
+
+    }
+
 }

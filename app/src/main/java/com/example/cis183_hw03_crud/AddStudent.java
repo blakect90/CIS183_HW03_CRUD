@@ -61,7 +61,6 @@ public class AddStudent extends AppCompatActivity {
         intent_j_home = new Intent(AddStudent.this, MainActivity.class);
 
         dbHelper = new DatabaseHelper(this);
-//        dbHelper.initAllTables();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, dbHelper.getAllMajorNames());
         sp_j_major.setAdapter(adapter);
 

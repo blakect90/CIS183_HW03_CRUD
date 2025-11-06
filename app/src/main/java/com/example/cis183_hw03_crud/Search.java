@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -22,12 +23,16 @@ public class Search extends AppCompatActivity {
     EditText et_j_search_fName;
     EditText et_j_search_lName;
     EditText et_j_search_uName;
+    EditText et_j_search_gpaMin;
+    EditText et_j_search_gpaMax;
     Spinner sp_j_major;
-    Spinner sp_j_gpaRange;
     ListView lv_j_searchList;
     Intent intent_j_home;
     DatabaseHelper db;
     SearchAdapter searchAdapter;
+    ArrayAdapter<String> adapter;
+
+
 
 
     @Override
@@ -46,8 +51,9 @@ public class Search extends AppCompatActivity {
         et_j_search_fName = findViewById(R.id.et_v_search_fName);
         et_j_search_lName = findViewById(R.id.et_v_search_lName);
         et_j_search_uName = findViewById(R.id.et_v_search_uName);
+        et_j_search_gpaMin = findViewById(R.id.et_v_search_gpaMin);
+        et_j_search_gpaMax = findViewById(R.id.et_v_search_gpaMax);
         sp_j_major = findViewById(R.id.sp_v_major);
-        sp_j_gpaRange = findViewById(R.id.sp_v_gpaRange);
         lv_j_searchList = findViewById(R.id.lv_v_searchList);
 
 
@@ -55,6 +61,9 @@ public class Search extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         db.initAllTables();
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, db.getAllMajorNames());
+        sp_j_major.setAdapter(adapter);
 
         setOnClickListeners();
     }
@@ -82,13 +91,16 @@ public class Search extends AppCompatActivity {
 //        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenFirstName(et_j_search_fName.getText().toString()));
 //        lv_j_searchList.setAdapter(searchAdapter);
 //
-//        Log.d("FOUND: ", db.getAllStudentsGivenFirstName(et_j_search_fName.getText().toString()).size() + "");
-
 //        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenLastName(et_j_search_lName.getText().toString()));
 //        lv_j_searchList.setAdapter(searchAdapter);
+//
+//        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenUsername(et_j_search_uName.getText().toString()));
+//        lv_j_searchList.setAdapter(searchAdapter);
 
-        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenUsername(et_j_search_uName.getText().toString()));
+        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenCriteria(et_j_search_fName.getText().toString(), et_j_search_lName.getText().toString(), et_j_search_uName.getText().toString(), sp_j_major.getSelectedItem().toString(),
+                Double.parseDouble(et_j_search_gpaMin.getText().toString()), Double.parseDouble(et_j_search_gpaMax.getText().toString())));
         lv_j_searchList.setAdapter(searchAdapter);
+
     }
 
 }
