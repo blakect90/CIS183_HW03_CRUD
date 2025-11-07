@@ -367,7 +367,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         if(Objects.equals(m, "No Selection"))
         {
-            Log.d("TEST FROM SEARCH FX:", "HELLO FROM NOT NULL MAJOR");
             selectStatement += "major is not null and ";
         }
         else

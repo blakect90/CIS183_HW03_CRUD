@@ -56,6 +56,8 @@ public class Search extends AppCompatActivity {
         sp_j_major = findViewById(R.id.sp_v_major);
         lv_j_searchList = findViewById(R.id.lv_v_searchList);
 
+        et_j_search_gpaMin.setText("0");
+        et_j_search_gpaMax.setText("4");
 
         intent_j_home = new Intent(Search.this, MainActivity.class);
 
