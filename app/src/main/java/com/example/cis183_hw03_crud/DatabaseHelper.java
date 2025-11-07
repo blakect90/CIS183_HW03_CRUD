@@ -5,16 +5,18 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME = "school.db";
     private static final String STUDENT_TABLE_NAME = "students";
     private static final String MAJOR_TABLE_NAME = "majors";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     public DatabaseHelper(Context c)
     {
@@ -76,11 +78,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             SQLiteDatabase db = this.getWritableDatabase();
 
+            db.execSQL("INSERT INTO " + MAJOR_TABLE_NAME + " (majorName, majorPrefix) VALUES ('No Selection', 'NULL');");
             db.execSQL("INSERT INTO " + MAJOR_TABLE_NAME + " (majorName, majorPrefix) VALUES ('Computer Science', 'CIS');");
             db.execSQL("INSERT INTO " + MAJOR_TABLE_NAME + " (majorName, majorPrefix) VALUES ('Business', 'BUS');");
             db.execSQL("INSERT INTO " + MAJOR_TABLE_NAME + " (majorName, majorPrefix) VALUES ('Law', 'LAW');");
             db.execSQL("INSERT INTO " + MAJOR_TABLE_NAME + " (majorName, majorPrefix) VALUES ('English', 'ENG');");
             db.execSQL("INSERT INTO " + MAJOR_TABLE_NAME + " (majorName, majorPrefix) VALUES ('History', 'HIS');");
+
 
 
             db.close();
@@ -361,8 +365,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             selectStatement += "username = '" + u + "' and ";
         }
-        if(m.isEmpty())
+        if(Objects.equals(m, "No Selection"))
         {
+            Log.d("TEST FROM SEARCH FX:", "HELLO FROM NOT NULL MAJOR");
             selectStatement += "major is not null and ";
         }
         else

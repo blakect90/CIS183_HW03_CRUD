@@ -74,6 +74,7 @@ public class Search extends AppCompatActivity {
             public void onClick(View v)
             {
                 //Log.d("TEST: ", "Search Button Clicked!!");
+                Log.d("TEST: ", sp_j_major.getSelectedItem().toString());
                 populateListView();
             }
         });
