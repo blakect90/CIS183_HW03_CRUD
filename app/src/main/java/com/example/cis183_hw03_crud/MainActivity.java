@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 //=================================================================================================
 // BLAKE TAYLOR
+// 11-08-2025
 // CIS 183 - Homeowrk_03 - CRUD APPLICATION
 // DESCRIPTION: This application is a simple student registration program. The user (admin) can manage a database
 // of Students and Majors using the simple functions on each page.
