@@ -70,6 +70,7 @@ public class ViewUpdateStudent extends AppCompatActivity {
         fillStudentDetails(studentSelected);
 
     }
+    // POPULATE FIELDS WITH SELECTED STUDENT DATA
     public void fillStudentDetails(String username)
     {
         Student student = dbHelper.getAllStudentData(username);
@@ -83,6 +84,7 @@ public class ViewUpdateStudent extends AppCompatActivity {
         et_j_gpa.setText(student.getGpa() + "");
         sp_j_major.setSelection(adapter.getPosition(major.getMajorName()));
     }
+    // BUTTON LISTENERS
     public void setOnClickListeners()
     {
         btn_j_home.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +96,6 @@ public class ViewUpdateStudent extends AppCompatActivity {
         btn_j_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("UPDATED: ", "Update Button Clicked");
                 Student student = new Student();
                 student.setFirstName(et_j_fName.getText().toString());
                 student.setLastName(et_j_lName.getText().toString());

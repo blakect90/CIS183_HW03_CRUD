@@ -68,7 +68,7 @@ public class AddStudent extends AppCompatActivity {
         setOnClickListeners();
 
     }
-
+    // SET ON CLICK LISTENERS
     public void setOnClickListeners()
     {
         btn_j_saveStudent.setOnClickListener(new View.OnClickListener()

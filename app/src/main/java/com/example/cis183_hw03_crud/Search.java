@@ -75,35 +75,22 @@ public class Search extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                //Log.d("TEST: ", "Search Button Clicked!!");
-                Log.d("TEST: ", sp_j_major.getSelectedItem().toString());
                 populateListView();
             }
         });
         btn_j_search_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("TEST: ", "Home Button Clicked!!");
                 startActivity(intent_j_home);
             }
         });
     }
-
+    // SEARCH STUDENT DATABASE GIVEN CRITERIA ON SEARCH PAGE
     private void populateListView()
     {
-//        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenFirstName(et_j_search_fName.getText().toString()));
-//        lv_j_searchList.setAdapter(searchAdapter);
-//
-//        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenLastName(et_j_search_lName.getText().toString()));
-//        lv_j_searchList.setAdapter(searchAdapter);
-//
-//        searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenUsername(et_j_search_uName.getText().toString()));
-//        lv_j_searchList.setAdapter(searchAdapter);
-
         searchAdapter = new SearchAdapter(this, db.getAllStudentsGivenCriteria(et_j_search_fName.getText().toString(), et_j_search_lName.getText().toString(), et_j_search_uName.getText().toString(), sp_j_major.getSelectedItem().toString(),
                 Double.parseDouble(et_j_search_gpaMin.getText().toString()), Double.parseDouble(et_j_search_gpaMax.getText().toString())));
         lv_j_searchList.setAdapter(searchAdapter);
-
     }
 
 }

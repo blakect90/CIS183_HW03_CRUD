@@ -91,7 +91,6 @@ public class AddMajor extends AppCompatActivity {
         btn_j_addMajor_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TEST: ", "Home Button Clicked!!");
                 startActivity(intent_j_home);
             }
         });

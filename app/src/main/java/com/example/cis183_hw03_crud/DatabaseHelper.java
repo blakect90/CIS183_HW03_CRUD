@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "school.db";
     private static final String STUDENT_TABLE_NAME = "students";
     private static final String MAJOR_TABLE_NAME = "majors";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 15;
 
     public DatabaseHelper(Context c)
     {
@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         initStudentTable();
         initMajorTable();
     }
-
+    // INITIALIZE STUDENT TABLE WITH DUMMY DATA
     private void initStudentTable()
     {
         if(countRecordsFromTable(STUDENT_TABLE_NAME) == 0)
@@ -71,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             db.close();
         }
     }
+    // INITIALIZE MAJOR TABLE WITH DUMMY DATA
     private void initMajorTable()
     {
         if(countRecordsFromTable(MAJOR_TABLE_NAME) == 0)
@@ -226,92 +227,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return studentList;
     }
 
-    public ArrayList<Student> getAllStudentsGivenFirstName(String f)
-    {
-        String sqlQuery = "SELECT * FROM " + STUDENT_TABLE_NAME + " WHERE fname = '" + f + "';";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sqlQuery, null);
-
-        ArrayList<Student> studentList = new ArrayList<>();
-        if(cursor.moveToFirst())
-        {
-            do
-            {
-                Student student = new Student();
-                student.setUsername(cursor.getString(0));
-                student.setFirstName(cursor.getString(1));
-                student.setLastName(cursor.getString(2));
-                student.setEmail(cursor.getString(3));
-                student.setAge(cursor.getInt(4));
-                student.setGpa(cursor.getDouble(5));
-                student.setMajor(cursor.getString(6));
-
-                studentList.add(student);
-
-            }
-            while(cursor.moveToNext());
-        }
-        db.close();
-        return studentList;
-    }
-    public ArrayList<Student> getAllStudentsGivenLastName(String l)
-    {
-        String sqlQuery = "SELECT * FROM " + STUDENT_TABLE_NAME + " WHERE lname = '" + l + "';";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sqlQuery, null);
-
-        ArrayList<Student> studentList = new ArrayList<>();
-        if(cursor.moveToFirst())
-        {
-            do
-            {
-                Student student = new Student();
-                student.setUsername(cursor.getString(0));
-                student.setFirstName(cursor.getString(1));
-                student.setLastName(cursor.getString(2));
-                student.setEmail(cursor.getString(3));
-                student.setAge(cursor.getInt(4));
-                student.setGpa(cursor.getDouble(5));
-                student.setMajor(cursor.getString(6));
-
-                studentList.add(student);
-
-            }
-            while(cursor.moveToNext());
-        }
-        db.close();
-        return studentList;
-
-    }
-    public ArrayList<Student> getAllStudentsGivenUsername(String u)
-    {
-        String sqlQuery = "SELECT * FROM " + STUDENT_TABLE_NAME + " WHERE username = '" + u + "';";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sqlQuery, null);
-
-        ArrayList<Student> studentList = new ArrayList<>();
-        if(cursor.moveToFirst())
-        {
-            do
-            {
-                Student student = new Student();
-                student.setUsername(cursor.getString(0));
-                student.setFirstName(cursor.getString(1));
-                student.setLastName(cursor.getString(2));
-                student.setEmail(cursor.getString(3));
-                student.setAge(cursor.getInt(4));
-                student.setGpa(cursor.getDouble(5));
-                student.setMajor(cursor.getString(6));
-
-                studentList.add(student);
-
-            }
-            while(cursor.moveToNext());
-        }
-        db.close();
-        return studentList;
-    }
-
     public void addStudent(Student s)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -332,7 +247,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL("DELETE FROM " + STUDENT_TABLE_NAME + " WHERE username = '" + userName + "';");
         db.close();
     }
-
+    // SEARCH DATABASE GIVEN CRITERIA ON SEARCH PAGE
     public ArrayList<Student> getAllStudentsGivenCriteria(String f, String l, String u, String m, double gMin, double gMax)
     {
         ArrayList<Student> listResults = new ArrayList<>();

@@ -62,34 +62,13 @@ public class MainActivity extends AppCompatActivity {
         // Set On Click Listeners
         setOnClickListeners();
 
+        //Fill Student ListView
         populateListView();
 
-        // FOR TESTING ONLY
-        checkTableRecordCount();
 
-
-    }
-    // FOR TESTING
-    private void checkTableRecordCount()
-    {
-        Log.d("STUDENT COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getStudentTableName()) + "");
-        Log.d("MAJOR COUNT: ", dbHelper.countRecordsFromTable(dbHelper.getMajorTableName()) + "");
-
-        Student test = dbHelper.getAllStudentData("addiet");
-        Major test2 = dbHelper.getAllMajorData("Business");
-
-        Log.d("TEST STUDENT: ", test.getFirstName() + " " + test.getLastName() + " " + test.getUsername() + " " + test.getEmail() + " " + test.getAge() + " " + test.getGpa() + " " + test.getMajor());
-        Log.d("TEST MAJOR: ", test2.getMajorID() + " " + test2.getMajorName() + " " + test2.getMajorPrefix());
     }
     private void populateListView()
     {
-//        ArrayList<Student> students = dbHelper.getAllStudentData();
-//
-//        // ARRAY LIST TEST
-//        for(int i = 0; i < students.size(); i++)
-//        {
-//            Log.d("ALL STUDENT DATA: ", students.get(i).getFirstName() + " " + students.get(i).getLastName() + " " + students.get(i).getUsername() + " " + students.get(i).getEmail() + " " + students.get(i).getAge() + " " + students.get(i).getGpa() + " " + students.get(i).getMajor());
-//        }
         studentListAdapter = new StudentListAdapter(this, dbHelper.getAllStudentData());
         lv_j_studentList.setAdapter(studentListAdapter);
     }
@@ -101,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("TEST: ", "Add Student Button Clicked");
-
                 startActivity(intent_j_addStudent);
 
             }
@@ -110,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
         btn_j_addMajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.d("TEST: ", "Add Major Button Clicked");
 
                 startActivity(intent_j_addMajor);
 
@@ -121,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("TEST: ", "Search Button Clicked");
                 startActivity(intent_j_search);
 
             }
@@ -131,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String username = ((TextView) view.findViewById(R.id.tv_v_studentCell_uName)).getText().toString();
-                Log.d("USERNAME SELECTED: ", username);
 
                 Intent intent = new Intent(MainActivity.this, ViewUpdateStudent.class);
                 intent.putExtra("username", username);
